@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .hero {
+            height: 100vh;
+            background: url(./Screenshot\ from\ 2024-06-26\ 12-38-08.png);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #contactBtn {
+            padding: 10px 20px;
+            font-size: 18px;
+            cursor: pointer;
+            border: 1px white;
+            border-radius: 5px;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0, 0, 0);
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+
+        .modal-content {
+            background-color: #0e0c0c;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 600px;
+            position: relative;
+            color: white;
+        }
+
+        .close-btn {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close-btn:hover,
+        .close-btn:focus {
+            color: rgb(96, 89, 89);
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .error {
+            color: red;
+            font-size: 12px;
+            display: none;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            box-sizing: border-box;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="hero">
+        <button id="contactBtn">Contact Us</button>
+    </div>
+
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <form id="contactForm">
+                <legend style="color:yellow;text-align: center;font-size: larger;">let me get in</legend>
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name">
+                <span class="error" id="nameError"></span>
+
+                <label for="address">Address:</label>
+                <input type="text" id="address" name="address">
+                <span class="error" id="addressError"></span>
+
+                <label for="phone">Phone Number:</label>
+                <input type="text" id="phone" name="phone">
+                <span class="error" id="phoneError"></span>
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email">
+                <span class="error" id="emailError"></span>
+                <label for="message">Message:</label>
+                <textarea id="message" name="message"></textarea>
+                <span class="error" id="messageError"></span>
+
+                <button type="submit" style="background-color:yellow;color:white;align-items:center;">Submit</button>
+            </form>
+        </div>
+    </div>
+
+    <script> document.getElementById('contactBtn').addEventListener('click', function () {
+            document.getElementById('modal').style.display = 'block';
+        });
+
+        document.getElementsByClassName('close-btn')[0].addEventListener('click', function () {
+            document.getElementById('modal').style.display = 'none';
+        });
+
+        document.getElementById('contactForm').addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            let isValid = true;
+
+            // Name validation
+            const name = document.getElementById('name').value;
+            const nameError = document.getElementById('nameError');
+            if (name === '') {
+                nameError.textContent = 'Name is required';
+                nameError.style.display = 'block';
+                isValid = false;
+            } else {
+                nameError.style.display = 'none';
+            }
+            // Address validation
+            const address = document.getElementById('address').value;
+            const addressError = document.getElementById('addressError');
+            if (address === '') {
+                addressError.textContent = 'Address is required';
+                addressError.style.display = 'block';
+                isValid = false;
+            } else {
+                addressError.style.display = 'none';
+            }
+
+            // Phone number validation
+            const phoneRegex = /^\+94\d{9}$/;
+            const phone = document.getElementById('phone').value;
+            const phoneError = document.getElementById('phoneError');
+            if (!phoneRegex.test(phone)) {
+                phoneError.textContent = 'Phone number must start with +94 and be followed by 9 digits';
+                phoneError.style.display = 'block';
+                isValid = false;
+            } else {
+                phoneError.style.display = 'none';
+            }
+            // Email validation
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            const email = document.getElementById('email').value;
+            const emailError = document.getElementById('emailError');
+            if (!emailRegex.test(email)) {
+                emailError.textContent = 'Invalid email format';
+                emailError.style.display = 'block';
+                isValid = false;
+            } else {
+                emailError.style.display = 'none';
+            }
+
+            document.getElementById('contactBtn').addEventListener('click', function () {
+                document.getElementById('modal').style.display = 'block';
+            });
+
+            document.getElementsByClassName('close-btn')[0].addEventListener('click', function () {
+                document.getElementById('modal').style.display = 'none';
+            });
+
+            document.getElementById('contactForm').addEventListener('submit', function (event) {
+                event.preventDefault();
+
+                let isValid = true;
+
+                // Name validation
+                const name = document.getElementById('name').value;
+                const nameError = document.getElementById('nameError');
+                if (name === '') {
+                    nameError.textContent = 'Name is required';
+                    nameError.style.display = 'block';
+                    isValid = false;
+                } else {
+                    nameError.style.display = 'none';
+                }
+                // Address validation
+                const address = document.getElementById('address').value;
+                const addressError = document.getElementById('addressError');
+                if (address === '') {
+                    addressError.textContent = 'Address is required';
+                    addressError.style.display = 'block';
+                    isValid = false;
+                } else {
+                    addressError.style.display = 'none';
+                }
+
+                // Phone number validation
+                const phoneRegex = /^\+94\d{9}$/;
+                const phone = document.getElementById('phone').value;
+                const phoneError = document.getElementById('phoneError');
+                if (!phoneRegex.test(phone)) {
+                    phoneError.textContent = 'Phone number must start with +94 and be followed by 9 digits';
+                    phoneError.style.display = 'block';
+                    isValid = false;
+                } else {
+                    phoneError.style.display = 'none';
+                }
+                // Email validation
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                const email = document.getElementById('email').value;
+                const emailError = document.getElementById('emailError');
+                if (!emailRegex.test(email)) {
+                    emailError.textContent = 'Invalid email format';
+                    emailError.style.display = 'block';
+                    isValid = false;
+                } else {
+                    emailError.style.display = 'none';
+                }
+
+                // Message validation
+                const message = document.getElementById('message').value;
+                const messageError = document.getElementById('messageError');
+                if (message.length < 10) {
+                    messageError.textContent = 'Message must be at least 10 characters long';
+                    messageError.style.display = 'block';
+                    isValid = false;
+                } else {
+                    messageError.style.display = 'none';
+                }
+                if (isValid) {
+                    const contactData = {
+                        name: name,
+                        address: address,
+                        phone: phone,
+                        email: email,
+                        message: message
+                    };
+
+                    localStorage.setItem('contactData', JSON.stringify(contactData));
+                    alert('Contact data submitted successfully!');
+                    document.getElementById('modal').style.display = 'none';
+                }
+            }); // Message validation
+            const message = document.getElementById('message').value;
+            const messageError = document.getElementById('messageError');
+            if (message.length < 10) {
+                messageError.textContent = 'Message must be at least 10 characters long';
+                messageError.style.display = 'block';
+                isValid = false;
+            } else {
+                messageError.style.display = 'none';
+            }
+            if (isValid) {
+                const contactData = {
+                    name: name,
+                    address: address,
+                    phone: phone,
+                    email: email,
+                    message: message
+                };
+
+                localStorage.setItem('contactData', JSON.stringify(contactData));
+                alert('Contact data submitted successfully!');
+                document.getElementById('modal').style.display = 'none';
+            }
+        });</script>
+</body>
+
+</html>
